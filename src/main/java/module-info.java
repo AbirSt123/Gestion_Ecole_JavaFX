@@ -18,4 +18,8 @@ module org.example.school_management {
     exports org.example.school_management.controllers to javafx.fxml;
     opens org.example.school_management.controllers.Dashboards to javafx.fxml;
     opens org.example.school_management.controllers.Etudiant to javafx.fxml;
+    exports org.example.school_management.controllers.Home to javafx.fxml;
+    exports org.example.school_management.controllers.Inscription to javafx.fxml;
+    exports org.example.school_management.controllers.Module to javafx.fxml;
+    exports org.example.school_management.controllers.Prof to javafx.fxml;
 }
