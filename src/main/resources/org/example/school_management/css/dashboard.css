@@ -1,0 +1,28 @@
+.sideAnchorPane{
+    -fx-background-color:linear-gradient(to bottom right, #2f466b, #662d60);
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-style: solid;
+}
+#btn_home{
+    -fx-background-color:linear-gradient(to bottom right, #1d334b, #4a1e49);
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-border-style: solid;
+    -fx-border-color: #141313;
+}
+#btn_home:hover {
+    -fx-background-color: linear-gradient(to bottom right, #152b3a, #3d2a3f); /* Darker gradient on hover */
+}
+#logout{
+    -fx-background-color: linear-gradient(to bottom right, #e65100, #bf360c);
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-border-style: solid;
+    -fx-border-color: #141313;
+
+}
+#logout:hover {
+    -fx-background-color: linear-gradient(to bottom right, #d84315, #9e2f23); /* Darker gradient on hover */
+}
