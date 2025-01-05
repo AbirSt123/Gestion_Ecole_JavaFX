@@ -2,10 +2,14 @@ package org.example.school_management.controllers.Dashboards;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -46,6 +50,9 @@ public class AdminDashboard implements Initializable {
 
     @FXML
     private AnchorPane sideAnchorPane;
+
+    @FXML
+    private AnchorPane InnerAnchor;
 
     /**
      * Hides all AnchorPanes
@@ -101,5 +108,23 @@ public class AdminDashboard implements Initializable {
         // Set default visibility for anchorHome
         hideAllAnchors();
         anchorHome.setVisible(true);
+    }
+
+
+    /**
+     * CRUD
+     */
+    @FXML
+    void btnAdd(ActionEvent event) throws IOException {
+        // Load the Add Student dialog FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/school_management/fxml/Etudiant/AddStudentDialog.fxml"));
+        AnchorPane page = loader.load();
+
+        // Create a new stage for the dialog
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Add Student");
+        dialogStage.initOwner(anchorEtudiant.getScene().getWindow());  // Make the dialog modal to the main window
+        dialogStage.setScene(new Scene(page));
+        dialogStage.showAndWait();
     }
 }

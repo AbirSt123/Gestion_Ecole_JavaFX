@@ -2,6 +2,9 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.school_management.controllers.Dashboards.AdminDashboard">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="974.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.school_management.controllers.Dashboards.AdminDashboard">
    <children>
       <VBox prefWidth="208.0">
          <children>
@@ -109,13 +112,26 @@
             </AnchorPane>
          </children>
       </VBox>
-      <AnchorPane fx:id="anchorEtudiant" layoutX="208.0" prefHeight="443.0" prefWidth="465.0" visible="false">
+      <AnchorPane fx:id="anchorEtudiant" layoutX="186.0" layoutY="1.0" prefHeight="443.0" prefWidth="787.0">
          <children>
-            <Text layoutX="105.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Etudiant">
+            <TextField layoutX="38.0" layoutY="23.0" prefHeight="25.0" prefWidth="222.0" promptText="Rechercher" styleClass="textfield" stylesheets="@../../css/dashboard.css" />
+            <TableView layoutX="38.0" layoutY="67.0" prefHeight="361.0" prefWidth="735.0" stylesheets="@../../css/dashboard.css">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Id" />
+                <TableColumn prefWidth="75.0" text="Matricule" />
+                  <TableColumn prefWidth="75.0" text="Nom" />
+                  <TableColumn prefWidth="75.0" text="Prénom" />
+                  <TableColumn prefWidth="111.33331298828125" text="Date de naissance" />
+                  <TableColumn prefWidth="88.6666259765625" text="email" />
+                  <TableColumn prefWidth="83.33331298828125" text="Promotion" />
+                  <TableColumn prefWidth="149.33333333333337" text="Actions" />
+              </columns>
+            </TableView>
+            <Button layoutX="691.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnAdd" prefHeight="33.0" prefWidth="76.0" styleClass="add-btn" stylesheets="@../../css/dashboard.css" text="Ajouter ">
                <font>
-                  <Font size="48.0" />
+                  <Font name="Yu Gothic UI Semibold" size="14.0" />
                </font>
-            </Text>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchorProf" layoutX="208.0" prefHeight="443.0" prefWidth="465.0" visible="false">

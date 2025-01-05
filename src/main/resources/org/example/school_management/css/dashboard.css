@@ -26,3 +26,81 @@
 #logout:hover {
     -fx-background-color: linear-gradient(to bottom right, #d84315, #9e2f23); /* Darker gradient on hover */
 }
+
+
+/* Style for the TableView's column headers */
+
+.table-view{
+    -fx-background-color:transparent;
+    -fx-border-color:linear-gradient(to bottom right,  #2f466b, #662d60);
+    -fx-border-radius:8px;
+    -fx-padding:0px;
+}
+.table-view .table-column{
+    -fx-alignment:CENTER;
+}
+.table-view .column-header-background{
+    -fx-background-color:linear-gradient(to bottom right,  #2f466b, #662d60);
+    -fx-background-insets: 0 0 0 0;
+    -f-background-radius:8px 8px 0px 0px;
+}
+.table-view .column-header, .filter{
+    -fx-background-color: transparent;
+
+    -fx-size:40px;
+}
+.table-view .column-header .label{
+    -fx-text-fill:#fff;
+    -fx-font-family:"Arial";
+}
+.textfield{
+    -fx-background-color:linear-gradient(to bottom, #efefef, #eee);
+    -fx-border-color:linear-gradient(to bottom right,  #2f466b, #662d60);
+    -fx-border-width:.8px;
+    -fx-font-family:"Tahoma";
+    -fx-border-radius:4px;
+}
+.textfield:focused{
+    -fx-border-width:1.8px;
+    -fx-background-color:#fff;
+}
+
+.search{
+    -fx-background-color:transparent;
+    -fx-border-color:linear-gradient(to bottom right,   #2f466b, #662d60);
+    -fx-border-radius:5px;
+    -fx-font-size:13px;
+    -fx-font-family:"Arial";
+    -fx-border-width:1px;
+    -fx-padding:0px 0px 0px 28px;
+}
+.search:focused{
+    -fx-border-width:2px;
+}
+
+.add-btn{
+    -fx-background-color:#327252;
+    -fx-background-radius:8px;
+    -fx-text-fill:#fff;
+    -fx-cursor:hand;
+}
+
+.save-btn{
+    -fx-background-color:linear-gradient(to bottom right, #2f466b, #662d60);
+    -fx-background-radius:8px;
+    -fx-text-fill:#fff;
+    -fx-cursor:hand;
+}
+.save-btn:hover {
+    -fx-background-color: linear-gradient(to bottom right, #152b3a, #3d2a3f); /* Darker gradient on hover */
+}
+
+.cancel-btn{
+    -fx-background-color:linear-gradient(to bottom right, #c0392b, #e74c3c);
+    -fx-background-radius:8px;
+    -fx-text-fill:#fff;
+    -fx-cursor:hand;
+}
+.cancel:hover {
+    -fx-background-color: linear-gradient(to bottom right, #a83229, #c0392b); /* Darker gradient on hover */
+}

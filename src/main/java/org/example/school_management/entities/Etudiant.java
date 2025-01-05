@@ -1,8 +1,6 @@
 package org.example.school_management.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
@@ -17,4 +15,12 @@ public class Etudiant {
     private Date dateNaissance;
     private String email;
     private String promotion;
+    public Etudiant(String matricule, String nom, String prenom, java.util.Date dateNaissance, String email, String promotion) {
+        this.matricule = matricule;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.email = email;
+        this.promotion = promotion;
+    }
 }
