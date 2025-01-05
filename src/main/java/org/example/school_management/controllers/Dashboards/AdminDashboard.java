@@ -2,16 +2,26 @@ package org.example.school_management.controllers.Dashboards;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 
-import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AdminDashboard {
+public class AdminDashboard implements Initializable {
+
+    @FXML
+    private AnchorPane anchorEtudiant;
+
+    @FXML
+    private AnchorPane anchorHome;
+
+    @FXML
+    private AnchorPane anchorModules;
+
+    @FXML
+    private AnchorPane anchorProf;
 
     @FXML
     private Button btn_etudiant;
@@ -29,42 +39,54 @@ public class AdminDashboard {
     private Button btn_profs;
 
     @FXML
-    private HBox root;
-
-    @FXML
     private AnchorPane sideAnchorPane;
 
-
-    @FXML
-    private BorderPane mainBorderPane;
-
-    @FXML
-    void BtnLogout(ActionEvent event) {
-
+    /**
+     * Hides all AnchorPanes
+     */
+    private void hideAllAnchors() {
+        anchorEtudiant.setVisible(false);
+        anchorProf.setVisible(false);
+        anchorModules.setVisible(false);
+        anchorHome.setVisible(false);
     }
 
     @FXML
-    void btnEtudiant(ActionEvent event) throws IOException {
-//        AnchorPane view = FXMLLoader.load(getClass().getResource("/org/example/school_management/fxml/Etudiant/Etudiant.fxml"));
-//        mainBorderPane.setCenter(view);
-//        Parent root = null;
-//        root = FXMLLoader.load(getClass().getResource("/org/example/school_management/fxml/Etudiant/Etudiant.fxml"));
-//        mainBorderPane.setCenter(root);
+    void BtnLogout(ActionEvent event) {
+        // Handle logout logic here
+    }
+
+    @FXML
+    void btnEtudiant(ActionEvent event) {
+        hideAllAnchors();
+        anchorEtudiant.setVisible(true);
     }
 
     @FXML
     void btnHome(ActionEvent event) {
-
+        hideAllAnchors();
+        anchorHome.setVisible(true);
     }
 
     @FXML
     void btnModule(ActionEvent event) {
-
+        hideAllAnchors();
+        anchorModules.setVisible(true);
     }
 
     @FXML
     void btnProf(ActionEvent event) {
-
+        hideAllAnchors();
+        anchorProf.setVisible(true);
     }
 
+    /**
+     * Called automatically when the FXML is loaded
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Set default visibility for anchorHome
+        hideAllAnchors();
+        anchorHome.setVisible(true);
+    }
 }
