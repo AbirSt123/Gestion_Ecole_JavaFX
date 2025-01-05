@@ -15,7 +15,7 @@
          <children>
             <AnchorPane fx:id="sideAnchorPane" prefHeight="445.0" prefWidth="208.0" styleClass="sideAnchorPane" stylesheets="@../../css/dashboard.css">
                <children>
-                  <Button fx:id="btn_home" layoutX="34.0" layoutY="69.0" mnemonicParsing="false" onAction="#btnHome" prefHeight="38.0" prefWidth="132.0" stylesheets="@../../css/dashboard.css" text="Home" textAlignment="RIGHT" textFill="WHITE">
+                  <Button fx:id="btn_home" layoutX="34.0" layoutY="45.0" mnemonicParsing="false" onAction="#btnHome" prefHeight="38.0" prefWidth="132.0" stylesheets="@../../css/dashboard.css" text="Home" textAlignment="RIGHT" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="22.0">
                            <image>
@@ -30,7 +30,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button id="btn_home" fx:id="btn_etudiant" layoutX="34.0" layoutY="140.0" mnemonicParsing="false" onAction="#btnEtudiant" prefHeight="38.0" prefWidth="132.0" stylesheets="@../../css/dashboard.css" text="Etudiants" textAlignment="RIGHT" textFill="WHITE">
+                  <Button id="btn_home" fx:id="btn_etudiant" layoutX="34.0" layoutY="106.0" mnemonicParsing="false" onAction="#btnEtudiant" prefHeight="38.0" prefWidth="132.0" stylesheets="@../../css/dashboard.css" text="Etudiants" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="Comic Sans MS" size="16.0" />
                      </font>
@@ -45,7 +45,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button id="btn_home" fx:id="btn_profs" layoutX="34.0" layoutY="204.0" mnemonicParsing="false" onAction="#btnProf" prefHeight="38.0" prefWidth="132.0" stylesheets="@../../css/dashboard.css" text="Profs" textAlignment="RIGHT" textFill="WHITE">
+                  <Button id="btn_home" fx:id="btn_profs" layoutX="34.0" layoutY="172.0" mnemonicParsing="false" onAction="#btnProf" prefHeight="38.0" prefWidth="132.0" stylesheets="@../../css/dashboard.css" text="Profs" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="Comic Sans MS" size="16.0" />
                      </font>
@@ -60,7 +60,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button id="btn_home" fx:id="btn_modules" layoutX="34.0" layoutY="271.0" mnemonicParsing="false" onAction="#btnModule" prefHeight="38.0" prefWidth="132.0" stylesheets="@../../css/dashboard.css" text="Modules" textAlignment="RIGHT" textFill="WHITE">
+                  <Button id="btn_home" fx:id="btn_modules" layoutX="34.0" layoutY="236.0" mnemonicParsing="false" onAction="#btnModule" prefHeight="38.0" prefWidth="132.0" stylesheets="@../../css/dashboard.css" text="Modules" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="Comic Sans MS" size="16.0" />
                      </font>
@@ -75,7 +75,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button id="logout" fx:id="btn_logout" layoutX="34.0" layoutY="335.0" mnemonicParsing="false" onAction="#BtnLogout" prefHeight="38.0" prefWidth="132.0" stylesheets="@../../css/dashboard.css" text="Logout" textAlignment="RIGHT" textFill="WHITE">
+                  <Button id="logout" fx:id="btn_logout" layoutX="34.0" layoutY="361.0" mnemonicParsing="false" onAction="#BtnLogout" prefHeight="38.0" prefWidth="132.0" stylesheets="@../../css/dashboard.css" text="Logout" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="Comic Sans MS" size="16.0" />
                      </font>
@@ -83,6 +83,21 @@
                         <ImageView fitHeight="22.0" fitWidth="24.0">
                            <image>
                               <Image url="@../../images/logout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button id="btn_home" fx:id="btn_inscription" layoutX="34.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnInscription" prefHeight="38.0" prefWidth="132.0" stylesheets="@../../css/dashboard.css" text="Inscription" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="20.0">
+                           <image>
+                              <Image url="@../../images/module.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -124,6 +139,15 @@
       <AnchorPane fx:id="anchorHome" layoutX="208.0" prefHeight="443.0" prefWidth="465.0" visible="false">
          <children>
             <Text layoutX="125.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorInscription" layoutX="208.0" prefHeight="443.0" prefWidth="465.0" visible="false">
+         <children>
+            <Text layoutX="144.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inscription">
                <font>
                   <Font size="48.0" />
                </font>

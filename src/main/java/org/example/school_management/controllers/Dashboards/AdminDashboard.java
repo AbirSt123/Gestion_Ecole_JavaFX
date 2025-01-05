@@ -24,6 +24,9 @@ public class AdminDashboard implements Initializable {
     private AnchorPane anchorProf;
 
     @FXML
+    private AnchorPane anchorInscription;
+
+    @FXML
     private Button btn_etudiant;
 
     @FXML
@@ -39,6 +42,9 @@ public class AdminDashboard implements Initializable {
     private Button btn_profs;
 
     @FXML
+    private Button btn_inscription;
+
+    @FXML
     private AnchorPane sideAnchorPane;
 
     /**
@@ -49,6 +55,7 @@ public class AdminDashboard implements Initializable {
         anchorProf.setVisible(false);
         anchorModules.setVisible(false);
         anchorHome.setVisible(false);
+        anchorInscription.setVisible(false);
     }
 
     @FXML
@@ -78,6 +85,12 @@ public class AdminDashboard implements Initializable {
     void btnProf(ActionEvent event) {
         hideAllAnchors();
         anchorProf.setVisible(true);
+    }
+
+    @FXML
+    void btnInscription(ActionEvent event) {
+        hideAllAnchors();
+        anchorInscription.setVisible(true);
     }
 
     /**
