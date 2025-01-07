@@ -104,3 +104,41 @@
 .cancel:hover {
     -fx-background-color: linear-gradient(to bottom right, #a83229, #c0392b); /* Darker gradient on hover */
 }
+
+.modify-btn {
+    -fx-background-color: #FFC107; /* Yellow */
+    -fx-text-fill: white;
+    -fx-padding: 5px 10px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-cursor: hand; /* Pointer cursor */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 2, 0, 0, 1); /* Subtle shadow */
+}
+
+.modify-btn:hover {
+    -fx-background-color: #FFA000; /* Darker Yellow on hover */
+}
+
+.modify-btn:pressed {
+    -fx-background-color: #FF8F00; /* Even darker yellow on click */
+}
+
+.delete-btn {
+    -fx-background-color: #F44336; /* Red */
+    -fx-text-fill: white;
+    -fx-padding: 5px 10px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-cursor: hand; /* Pointer cursor */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 2, 0, 0, 1); /* Subtle shadow */
+}
+
+.delete-btn:hover {
+    -fx-background-color: #D32F2F; /* Darker Red on hover */
+}
+
+.delete-btn:pressed {
+    -fx-background-color: #B71C1C; /* Even darker red on click */
+}
+
+

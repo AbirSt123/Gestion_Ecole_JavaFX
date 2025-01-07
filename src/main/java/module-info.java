@@ -22,4 +22,8 @@ module org.example.school_management {
     exports org.example.school_management.controllers.Inscription to javafx.fxml;
     exports org.example.school_management.controllers.Module to javafx.fxml;
     exports org.example.school_management.controllers.Prof to javafx.fxml;
+    opens org.example.school_management.entities to javafx.base;
+    opens org.example.school_management.controllers.Prof to javafx.fxml;
+    opens org.example.school_management.controllers.Module to javafx.fxml;
+
 }

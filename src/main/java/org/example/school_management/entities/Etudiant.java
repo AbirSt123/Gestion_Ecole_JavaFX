@@ -7,6 +7,8 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Etudiant {
     private int id;
     private String matricule;

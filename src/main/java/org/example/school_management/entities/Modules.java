@@ -1,16 +1,18 @@
 package org.example.school_management.entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Module {
+@Getter
+@Setter
+public class Modules {
     private int id;
     private String nomModule;
     private String codeModule;
     private int professeurId;
+    private Professeur professeur;
 }
+

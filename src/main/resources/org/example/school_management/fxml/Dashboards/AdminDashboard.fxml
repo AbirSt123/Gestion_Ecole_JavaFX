@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="974.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.school_management.controllers.Dashboards.AdminDashboard">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.school_management.controllers.Dashboards.AdminDashboard">
    <children>
       <VBox prefWidth="208.0">
          <children>
@@ -92,7 +92,7 @@
             </AnchorPane>
          </children>
       </VBox>
-      <AnchorPane fx:id="contentAnchorPane" layoutX="208.0" layoutY="1.0" prefHeight="443.0" prefWidth="787.0">
+      <AnchorPane fx:id="contentAnchorPane" layoutX="208.0" layoutY="1.0" prefHeight="443.0" prefWidth="1078.0">
          <!-- Dynamic content will be loaded here -->
       </AnchorPane>
    </children>

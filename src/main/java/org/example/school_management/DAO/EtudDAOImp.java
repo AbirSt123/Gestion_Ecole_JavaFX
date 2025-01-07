@@ -40,6 +40,7 @@ public class EtudDAOImp implements EtudiantDAO{
 
             while (rs.next()) {
                 Etudiant etudiant = new Etudiant(
+                        rs.getInt("id"),
                         rs.getString("matricule"),
                         rs.getString("nom"),
                         rs.getString("prenom"),
@@ -54,6 +55,35 @@ public class EtudDAOImp implements EtudiantDAO{
         }
         return etudiants;
     }
+
+    @Override
+    public void modifierEtudiant(Etudiant etudiant) {
+        String query = "UPDATE etudiants SET nom = ?, prenom = ?, date_naissance = ?, email = ?, promotion = ? WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, etudiant.getNom());
+            stmt.setString(2, etudiant.getPrenom());
+            stmt.setDate(3, new Date(etudiant.getDateNaissance().getTime()));
+            stmt.setString(4, etudiant.getEmail());
+            stmt.setString(5, etudiant.getPromotion());
+            stmt.setInt(6, etudiant.getId()); // Use the id to identify the record
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void supprimerEtudiant(int id) {
+        String query = "DELETE FROM etudiants WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 
 
