@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="modulesPane" prefHeight="436.0" prefWidth="620.0" stylesheets="@../../css/dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.school_management.controllers.ProfEtu.AfficherModules">
+    <children>
+        <TextField layoutX="38.0" layoutY="23.0" prefHeight="25.0" prefWidth="222.0" promptText="Rechercher" styleClass="textfield" />
+        <TableView fx:id="tableView" layoutX="38.0" layoutY="60.0" prefHeight="361.0" prefWidth="549.0">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="75.0" text="Id" />
+                <TableColumn fx:id="nomColumn" prefWidth="237.33334350585938" text="Nom" />
+                <TableColumn fx:id="codeColumn" prefWidth="244.0" text="Code" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

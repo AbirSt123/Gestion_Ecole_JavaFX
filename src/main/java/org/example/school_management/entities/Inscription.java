@@ -1,8 +1,6 @@
 package org.example.school_management.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
@@ -10,9 +8,11 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Inscription {
     private int id;
-    private int etudiantId;
-    private int moduleId;
     private Date dateInscription;
+    private Etudiant etudiant;
+    private Modules module;
 }

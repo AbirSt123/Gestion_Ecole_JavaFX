@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import org.example.school_management.DAO.ModuleDAOImp;
 import org.example.school_management.DAO.ProfDAOImp;
 import org.example.school_management.entities.Modules;
@@ -40,6 +41,21 @@ public class ModifierModule {
 
         // Fetch the list of all professors and populate the ComboBox with the professors
         comboField.setItems(FXCollections.observableList(professeurDAO.afficherProfesseurs()));
+        comboField.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Professeur professeur) {
+                return professeur != null ? professeur.getNom() + " " + professeur.getPrenom() : "";
+            }
+
+            @Override
+            public Professeur fromString(String string) {
+                return comboField.getItems()
+                        .stream()
+                        .filter(prof -> (prof.getNom() + " " + prof.getPrenom()).equals(string))
+                        .findFirst()
+                        .orElse(null);
+            }
+        });
 
         // Fetch the selected professor using the professor's ID (from the module) and set it in the ComboBox
         Professeur selectedProf = professeurDAO.getProfesseurById(module.getProfesseurId());

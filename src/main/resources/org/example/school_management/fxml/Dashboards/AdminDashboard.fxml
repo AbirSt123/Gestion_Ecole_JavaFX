@@ -49,7 +49,7 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button id="logout" fx:id="btn_logout" layoutX="34.0" layoutY="361.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="141.0" text="   Logout" textAlignment="RIGHT" textFill="WHITE">
+                  <Button id="logout" fx:id="btn_logout" layoutX="34.0" layoutY="361.0" mnemonicParsing="false" onAction="#BtnLogout" prefHeight="38.0" prefWidth="141.0" text="   Logout" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="Comic Sans MS" size="16.0" />
                      </font>

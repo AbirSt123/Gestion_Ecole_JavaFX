@@ -168,17 +168,17 @@ public class AdminDashboard {
         loadContent("/org/example/school_management/fxml/Inscription/Inscription.fxml");
     }
 
-//    @FXML
-//    public void BtnLogout(ActionEvent event) {
-//        Stage stage = (Stage) contentAnchorPane.getScene().getWindow();
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/school_management/views/Login.fxml"));
-//            Scene scene = new Scene(loader.load());
-//            stage.setScene(scene);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @FXML
+    public void BtnLogout(ActionEvent event) {
+        Stage stage = (Stage) contentAnchorPane.getScene().getWindow();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/school_management/fxml/sign-in.fxml"));
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void loadContent(String fxml) {
         try {

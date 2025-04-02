@@ -140,5 +140,9 @@
 .delete-btn:pressed {
     -fx-background-color: #B71C1C; /* Even darker red on click */
 }
+.pane{
+    -fx-background-color:linear-gradient(to bottom right, #2f466b, #662d60);
+
+}
 
 

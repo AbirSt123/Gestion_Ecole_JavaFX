@@ -1,13 +1,11 @@
 package org.example.school_management.DAO;
 
 import org.example.school_management.config.DatabaseConnection;
+import org.example.school_management.entities.Modules;
 import org.example.school_management.entities.Professeur;
 import org.example.school_management.entities.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -144,13 +142,68 @@ public class ProfDAOImp implements ProfDAO {
                 if (resultSet.next()) {
                     professeur = new Professeur();
                     professeur.setId(resultSet.getInt("id"));
-                    professeur.setNom(resultSet.getString("nom")); // Assuming the column is named 'nom'
-                    // Add more fields as necessary based on your schema
+                    professeur.setNom(resultSet.getString("nom"));
+                    professeur.setPrenom(resultSet.getString("prenom"));
+
                 }
             }
         }
         return professeur;  // Return the fetched professor or null if not found
     }
+    public List<Modules> getModulesByProfesseurId(int professeurId) {
+        List<Modules> modulesList = new ArrayList<>();
+        String sql = "SELECT * FROM modules WHERE professeur_id = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, professeurId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    // Create a new Modules object for each row
+                    Modules module = new Modules(
+                            rs.getInt("id"),
+                            rs.getString("nomModule"),
+                            rs.getString("codeModule"),
+                            rs.getInt("professeurId"),
+                            null // Populate the Professeur object if needed
+                    );
+                    modulesList.add(module);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return modulesList;
+    }
+    public int getTotalProfessors() throws SQLException {
+        String query = "SELECT COUNT(*) FROM professeurs";
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        }
+        return 0;
+    }
+
+    // Method to get professors with the most modules
+    public List<Professeur> getProfessorsWithMostModules() throws SQLException {
+        List<Professeur> professors = new ArrayList<>();
+        String query = "SELECT p.nom, p.prenom, COUNT(m.id) AS module_count FROM professeurs p " +
+                "JOIN modules m ON p.id = m.professeur_id " +
+                "GROUP BY p.id ORDER BY module_count DESC LIMIT 5";
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Professeur professor = new Professeur();
+                professor.setNom(rs.getString("nom"));
+                professor.setPrenom(rs.getString("prenom"));
+                professors.add(professor);
+            }
+        }
+        return professors;
+    }
+
 
 
 

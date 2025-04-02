@@ -29,10 +29,8 @@ public class ModifierProf {
     private ProfDAOImp profDAO = new ProfDAOImp();
     private Professeur professeur;
 
-    // This method is used to initialize the data passed from the previous screen
     public void initData(Professeur professeur) {
         this.professeur = professeur;
-        // Fill the fields with the current professor's data
         nomField.setText(professeur.getNom());
         prenomField.setText(professeur.getPrenom());
         specialiteField.setText(professeur.getSpecialite());

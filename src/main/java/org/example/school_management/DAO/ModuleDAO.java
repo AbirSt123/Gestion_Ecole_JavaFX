@@ -9,4 +9,5 @@ public interface ModuleDAO {
      void modifierModule(Modules module);
      void supprimerModule(int id);
       List<Modules> afficherModules();
+    List<Modules> getModulesByProfesseurId(int professeurId);
 }

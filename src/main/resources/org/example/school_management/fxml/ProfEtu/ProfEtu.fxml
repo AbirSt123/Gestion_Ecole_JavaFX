@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="modulesPane" prefHeight="441.0" prefWidth="811.0" stylesheets="@../../css/dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.school_management.controllers.ProfEtu.ProfEtu">
+    <children>
+        <TableView fx:id="tableView" layoutX="38.0" layoutY="107.0" prefHeight="275.0" prefWidth="735.0">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="75.0" text="Id" />
+                <TableColumn fx:id="nomColumn" prefWidth="144.66668701171875" text="Nom" />
+                <TableColumn fx:id="prenomColumn" prefWidth="248.66671752929688" text="Prénom" />
+                <TableColumn fx:id="dateColumn" prefWidth="264.6665954589844" text="Date Inscription" />
+            </columns>
+        </TableView>
+        <Label layoutX="199.0" layoutY="25.0" prefHeight="25.0" prefWidth="215.0" text="Sélectionner un module :">
+            <font>
+                <Font name="Comic Sans MS" size="18.0" />
+            </font>
+        </Label>
+        <ComboBox fx:id="comboField" layoutX="449.0" layoutY="25.0" prefHeight="25.0" prefWidth="184.0" promptText="Sélectionner module" />
+        <Label layoutX="268.0" layoutY="61.0" text="Liste des étudiants Inscrits">
+            <font>
+                <Font name="Comic Sans MS" size="24.0" />
+            </font>
+            <textFill>
+                <LinearGradient endX="1.0" endY="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.18431372940540314" green="0.27450981736183167" blue="0.41960784792900085" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.4000000059604645" green="0.1764705926179886" blue="0.3764705955982208" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+        </Label>
+        <Button fx:id="exporttoCSV" layoutX="208.0" layoutY="391.0" mnemonicParsing="false" onAction="#exportToCSV" prefHeight="33.0" prefWidth="136.0" styleClass="modify-btn" stylesheets="@../../css/dashboard.css" text="Exporter en csv">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button layoutX="497.0" layoutY="391.0" mnemonicParsing="false" onAction="#exportToPDF" prefHeight="33.0" prefWidth="136.0" styleClass="cancel-btn" stylesheets="@../../css/dashboard.css" text="Exporter en pdf">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

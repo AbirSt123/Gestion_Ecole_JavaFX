@@ -10,16 +10,27 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 //import org.example.school_management.controllers.Etudiant.ModifierEtudiant;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.example.school_management.DAO.EtudDAOImp;
 import org.example.school_management.DAO.ProfDAOImp;
 import org.example.school_management.entities.Etudiant;
 import org.example.school_management.entities.Professeur;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
 
 public class AfficherProf {
 
@@ -160,5 +171,127 @@ public class AfficherProf {
         alert.setContentText(message);
         return alert.showAndWait();
     }
+
+    @FXML
+    public void exportToCSV() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save CSV File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        fileChooser.setInitialFileName("professors.csv");
+
+        Stage stage = (Stage) profsPane.getScene().getWindow();
+        File file = fileChooser.showSaveDialog(stage);
+
+        if (file != null) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                // Write header
+                writer.write("ID,Nom,Prénom,Spécialité");
+                writer.newLine();
+
+                // Write data rows
+                List<Professeur> professeurs = profDAO.afficherProfesseurs();
+                for (Professeur professeur : professeurs) {
+                    writer.write(professeur.getId() + "," +
+                            professeur.getNom() + "," +
+                            professeur.getPrenom() + "," +
+                            professeur.getSpecialite());
+                    writer.newLine();
+                }
+
+                showInformationDialog("Export Successful", "CSV file has been exported successfully!");
+
+            } catch (IOException e) {
+                showErrorDialog("Error", "An error occurred while exporting to CSV: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    private void showInformationDialog(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML
+    public void exportToPDF() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save PDF File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+        fileChooser.setInitialFileName("professors.pdf");
+
+        Stage stage = (Stage) profsPane.getScene().getWindow();
+        File file = fileChooser.showSaveDialog(stage);
+
+        if (file != null) {
+            try (PDDocument document = new PDDocument()) {
+                PDPage page = new PDPage();
+                document.addPage(page);
+
+                PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+                // Set font and initialize layout
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+                float margin = 50;
+                float yPosition = page.getMediaBox().getHeight() - margin;
+                float tableWidth = page.getMediaBox().getWidth() - 2 * margin;
+                float rowHeight = 20;
+
+                // Draw table header
+                String[] headers = {"ID", "Nom", "Prénom", "Spécialité"};
+                float[] columnWidths = {50, 150, 150, 150};
+                drawRow(contentStream, headers, columnWidths, yPosition);
+                yPosition -= rowHeight;
+
+                // Draw table rows
+                contentStream.setFont(PDType1Font.HELVETICA, 10);
+                List<Professeur> professeurs = profDAO.afficherProfesseurs();
+                for (Professeur professeur : professeurs) {
+                    if (yPosition < margin) { // Check if a new page is needed
+                        contentStream.close();
+                        page = new PDPage();
+                        document.addPage(page);
+                        contentStream = new PDPageContentStream(document, page);
+                        yPosition = page.getMediaBox().getHeight() - margin;
+                    }
+
+                    String[] row = {
+                            String.valueOf(professeur.getId()),
+                            professeur.getNom(),
+                            professeur.getPrenom(),
+                            professeur.getSpecialite()
+                    };
+                    drawRow(contentStream, row, columnWidths, yPosition);
+                    yPosition -= rowHeight;
+                }
+
+                contentStream.close();
+                document.save(file);
+
+                showInformationDialog("Export Successful", "PDF file has been exported successfully!");
+
+            } catch (IOException e) {
+                showErrorDialog("Error", "An error occurred while exporting to PDF: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void drawRow(PDPageContentStream contentStream, String[] row, float[] columnWidths, float yPosition) throws IOException {
+        float xStart = 50;
+        float cellMargin = 5;
+        for (int i = 0; i < row.length; i++) {
+            contentStream.beginText();
+            contentStream.newLineAtOffset(xStart + cellMargin, yPosition - 15);
+            contentStream.showText(row[i]);
+            contentStream.endText();
+            xStart += columnWidths[i];
+        }
+    }
+
+
 }
 

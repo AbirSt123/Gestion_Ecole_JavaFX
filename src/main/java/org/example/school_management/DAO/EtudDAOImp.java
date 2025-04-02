@@ -82,6 +82,16 @@ public class EtudDAOImp implements EtudiantDAO{
             e.printStackTrace();
         }
     }
+    public int getTotalStudents() throws SQLException {
+        String query = "SELECT COUNT(*) FROM etudiants";
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        }
+        return 0;
+    }
 
 
 

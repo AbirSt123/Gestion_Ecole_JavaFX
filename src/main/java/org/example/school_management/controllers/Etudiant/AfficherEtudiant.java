@@ -9,13 +9,27 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.example.school_management.DAO.EtudDAOImp;
 import org.example.school_management.entities.Etudiant;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
+
+
+
+
+
 
 public class AfficherEtudiant {
 
@@ -54,7 +68,6 @@ public class AfficherEtudiant {
 
     @FXML
     public void initialize() {
-        // Bind columns to properties
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         matriculeColumn.setCellValueFactory(new PropertyValueFactory<>("matricule"));
         nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -63,10 +76,8 @@ public class AfficherEtudiant {
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         promotionColumn.setCellValueFactory(new PropertyValueFactory<>("promotion"));
 
-        // Configure actions column
         configureActionsColumn();
 
-        // Load data into the TableView
         loadEtudiants();
     }
 
@@ -130,7 +141,6 @@ public class AfficherEtudiant {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/school_management/fxml/Etudiant/" + fxmlFile));
             AnchorPane page = loader.load();
 
-            // If the dialog requires data, pass it to the controller
             if (etudiant != null) {
                 ModifierEtudiant controller = loader.getController();
                 controller.initData(etudiant);
@@ -142,7 +152,6 @@ public class AfficherEtudiant {
             dialogStage.setScene(new Scene(page));
             dialogStage.showAndWait();
 
-            // Refresh the TableView after the dialog closes
             loadEtudiants();
         } catch (IOException e) {
             showErrorDialog("Error", "Unable to open dialog: " + e.getMessage());
@@ -165,4 +174,126 @@ public class AfficherEtudiant {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    @FXML
+    public void exportToCSV() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save CSV File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+        // Show save dialog to let the user choose the file location
+        File file = fileChooser.showSaveDialog(etudiantsPane.getScene().getWindow());
+
+        if (file != null) {
+            try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+                // Write the header row
+                writer.println("ID,Matricule,Nom,Prénom,Date de naissance,Email,Promotion");
+
+                // Write the student data
+                for (Etudiant etudiant : etudiantList) {
+                    writer.println(etudiant.getId() + "," +
+                            etudiant.getMatricule() + "," +
+                            etudiant.getNom() + "," +
+                            etudiant.getPrenom() + "," +
+                            etudiant.getDateNaissance() + "," +
+                            etudiant.getEmail() + "," +
+                            etudiant.getPromotion());
+                }
+
+                showInformationDialog("Export successful", "CSV file has been saved successfully!");
+
+            } catch (IOException e) {
+                showErrorDialog("Error", "An error occurred while exporting to CSV: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void showInformationDialog(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showErrorCSVDialog(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    @FXML
+    public void exportToPDF() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save PDF File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+
+        // Show save dialog to let the user choose the file location
+        File file = fileChooser.showSaveDialog(etudiantsPane.getScene().getWindow());
+
+        if (file != null) {
+            try (PDDocument document = new PDDocument()) {
+                PDPage page = new PDPage();
+                document.addPage(page);
+
+                try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                    contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+                    float yStart = 750;
+                    float yPosition = yStart;
+                    float margin = 50;
+                    float cellHeight = 20;
+
+                    // Create the table header
+                    String[] headers = {"ID", "Matricule", "Nom", "Prénom", "Date de naissance", "Email", "Promotion"};
+                    for (String header : headers) {
+                        contentStream.beginText();
+                        contentStream.newLineAtOffset(margin, yPosition);
+                        contentStream.showText(header);
+                        contentStream.endText();
+                        margin += 100; // Adjust margin for next header
+                    }
+
+                    // Reset margin and move to next row
+                    margin = 50;
+                    yPosition -= cellHeight;
+
+                    // Write data rows
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    for (Etudiant etudiant : etudiantList) {
+                        String[] row = {
+                                String.valueOf(etudiant.getId()),
+                                etudiant.getMatricule(),
+                                etudiant.getNom(),
+                                etudiant.getPrenom(),
+                                dateFormat.format(etudiant.getDateNaissance()),
+                                etudiant.getEmail(),
+                                etudiant.getPromotion()
+                        };
+
+                        for (String cell : row) {
+                            contentStream.beginText();
+                            contentStream.newLineAtOffset(margin, yPosition);
+                            contentStream.showText(cell);
+                            contentStream.endText();
+                            margin += 100; // Adjust margin for next cell
+                        }
+                        margin = 50;
+                        yPosition -= cellHeight;
+                    }
+                }
+
+                // Save the document to the chosen location
+                document.save(file);
+
+                showInformationDialog("Export successful", "PDF file has been saved successfully!");
+
+            } catch (IOException e) {
+                showErrorDialog("Error", "An error occurred while exporting to PDF: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

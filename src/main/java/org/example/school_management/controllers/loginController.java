@@ -23,6 +23,8 @@ public class loginController {
     @FXML
     private Label wrongPass;
 
+    public static int loggedInUserId = -1;
+
     public void loginButtonOnAction(ActionEvent event){
         if(!username.getText().isBlank() && !password.getText().isBlank()){
             //wrongPass.setText("You try to login");
@@ -37,7 +39,7 @@ public class loginController {
         DatabaseConnection connection = DatabaseConnection.getInstance();
         Connection con = connection.getConnection();
 
-        String query = "SELECT role FROM utilisateurs WHERE username = ? AND password = ?";
+        String query = "SELECT role,id FROM utilisateurs WHERE username = ? AND password = ?";
 
         try (PreparedStatement preparedStatement = con.prepareStatement(query)) {
             preparedStatement.setString(1, username.getText());
@@ -47,7 +49,8 @@ public class loginController {
 
             if (resultSet.next()) {
                 int role = resultSet.getInt("role");
-                handleRole(role);
+
+                handleRole(role,con);
             } else {
                 wrongPass.setText("Nom d'utilisateur ou mot de passe incorrect.");
             }
@@ -57,10 +60,12 @@ public class loginController {
         }
     }
 
-    private void handleRole(int role) throws IOException {
+    private void handleRole(int role, Connection con) throws IOException {
         Scene scene;
         String fxmlPath = "";
         Stage stage = new Stage();
+
+
         switch (role) {
             case 1:
                 fxmlPath = "/org/example/school_management/fxml/Dashboards/AdminDashboard.fxml";
@@ -70,6 +75,7 @@ public class loginController {
                 break;
             case 3:
                 fxmlPath = "/org/example/school_management/fxml/Dashboards/ProfesseurDashboard.fxml";
+
                 break;
             default:
                 break;
@@ -88,4 +94,5 @@ public class loginController {
         Stage loginStage = (Stage) username.getScene().getWindow();
         loginStage.close();
     }
+
 }

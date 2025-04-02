@@ -25,4 +25,5 @@ public class Etudiant {
         this.email = email;
         this.promotion = promotion;
     }
+
 }

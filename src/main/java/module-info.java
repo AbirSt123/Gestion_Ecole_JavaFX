@@ -11,6 +11,7 @@ module org.example.school_management {
     requires eu.hansolo.tilesfx;
     requires java.sql;
     requires static lombok;
+    requires org.apache.pdfbox;
 
     opens org.example.school_management to javafx.fxml;
     exports org.example.school_management;
@@ -25,5 +26,10 @@ module org.example.school_management {
     opens org.example.school_management.entities to javafx.base;
     opens org.example.school_management.controllers.Prof to javafx.fxml;
     opens org.example.school_management.controllers.Module to javafx.fxml;
+    opens org.example.school_management.controllers.Inscription to javafx.fxml;
+    exports org.example.school_management.controllers.ProfEtu to javafx.fxml;
+    opens org.example.school_management.controllers.ProfEtu to javafx.fxml;
+    opens org.example.school_management.controllers.Home to javafx.fxml;
+
 
 }

@@ -10,7 +10,7 @@
 <AnchorPane fx:id="etudiantsPane" prefHeight="436.0" prefWidth="830.0" stylesheets="@../../css/dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.school_management.controllers.Etudiant.AfficherEtudiant">
    <children>
       <TextField layoutX="38.0" layoutY="23.0" prefHeight="25.0" prefWidth="222.0" promptText="Rechercher" styleClass="textfield" />
-      <TableView fx:id="tableView" layoutX="38.0" layoutY="60.0" prefHeight="361.0" prefWidth="759.0">
+      <TableView fx:id="tableView" layoutX="38.0" layoutY="60.0" prefHeight="301.0" prefWidth="759.0">
          <columns>
             <TableColumn fx:id="idColumn" prefWidth="75.0" text="Id" />
             <TableColumn fx:id="matriculeColumn" prefWidth="75.0" text="Matricule" />
@@ -27,5 +27,15 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
+      <Button fx:id="exporttoCSV" layoutX="246.0" layoutY="377.0" mnemonicParsing="false" onAction="#exportToCSV" prefHeight="33.0" prefWidth="136.0" styleClass="modify-btn" stylesheets="@../../css/dashboard.css" text="Exporter en csv">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="466.0" layoutY="377.0" mnemonicParsing="false" onAction="#exportToPDF" prefHeight="33.0" prefWidth="136.0" styleClass="cancel-btn" stylesheets="@../../css/dashboard.css" text="Exporter en pdf">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

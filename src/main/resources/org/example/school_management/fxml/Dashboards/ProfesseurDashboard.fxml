@@ -1,10 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.school_management.controllers.Dashboards.ProfesseurDashboard">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.school_management.controllers.Dashboards.ProfesseurDashboard">
    <children>
-      <Text layoutX="156.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello Professeur" wrappingWidth="282.13671875" />
+      <VBox prefWidth="208.0">
+         <children>
+            <AnchorPane fx:id="sideAnchorPane" prefHeight="445.0" prefWidth="208.0" styleClass="sideAnchorPane" stylesheets="@../../css/dashboard.css">
+               <children>
+                  <Button fx:id="btn_home" layoutX="33.0" layoutY="84.0" mnemonicParsing="false" onAction="#btnHome" prefHeight="41.0" prefWidth="141.0" text="Home" textAlignment="RIGHT" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="22.0">
+                           <image>
+                              <Image url="@../../images/home3.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button id="btn_home" fx:id="btn_etudiant" layoutX="34.0" layoutY="181.0" mnemonicParsing="false" onAction="#btnEtudiant" prefHeight="41.0" prefWidth="141.0" stylesheets="@../../css/dashboard.css" text="     Etudiants" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button id="btn_home" fx:id="btn_modules" layoutX="33.0" layoutY="271.0" mnemonicParsing="false" onAction="#btnModule" prefHeight="38.0" prefWidth="141.0" text="  Modules" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button id="logout" fx:id="btn_logout" layoutX="34.0" layoutY="354.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="141.0" text="    Logout" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <ImageView fitHeight="27.0" fitWidth="24.0" layoutX="47.0" layoutY="186.0">
+                     <image>
+                        <Image url="@../../images/student.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="20.0" fitWidth="24.0" layoutX="46.0" layoutY="280.0">
+                     <image>
+                        <Image url="@../../images/module.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="24.0" layoutX="47.0" layoutY="360.0">
+                     <image>
+                        <Image url="@../../images/logout.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <AnchorPane fx:id="contentAnchorPane" layoutX="208.0" layoutY="1.0" prefHeight="443.0" prefWidth="1078.0">
+         <!-- Dynamic content will be loaded here -->
+      </AnchorPane>
    </children>
 </AnchorPane>

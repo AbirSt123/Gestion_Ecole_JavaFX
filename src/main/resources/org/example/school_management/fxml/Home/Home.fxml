@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.school_management.controllers.Home.Home">
-   <children>
-      <Text layoutX="196.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home">
-         <font>
-            <Font size="48.0" />
-         </font>
-      </Text>
-   </children>
+   <Label layoutX="43.0" layoutY="36.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Dashboard" />
+   <Label layoutX="381.0" layoutY="249.0" prefHeight="17.0" prefWidth="108.0" text="Total Etudiants: " />
+   <Label layoutX="232.0" layoutY="87.0" text="Total Professeurs: " />
+   <Label layoutX="63.0" layoutY="249.0" text="Total Modules: " />
+   <AnchorPane layoutX="210.0" layoutY="117.0" prefHeight="114.0" prefWidth="141.0" styleClass="pane" stylesheets="@../../css/dashboard.css">
+      <children>
+         <Text fx:id="totalProfessorsLabel" fill="WHITE" layoutX="64.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Text>
+      </children>
+   </AnchorPane>
+   <AnchorPane layoutX="352.0" layoutY="272.0" prefHeight="114.0" prefWidth="141.0" styleClass="pane" stylesheets="@../../css/dashboard.css">
+      <children>
+         <Text fx:id="totalStudentsLabel" fill="WHITE" layoutX="56.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Text>
+      </children>
+   </AnchorPane>
+   <AnchorPane layoutX="58.0" layoutY="272.0" prefHeight="114.0" prefWidth="141.0" styleClass="pane" stylesheets="@../../css/dashboard.css">
+      <children>
+         <Text fx:id="totalModulesLabel" fill="WHITE" layoutX="62.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Text>
+      </children>
+   </AnchorPane>
 </AnchorPane>
